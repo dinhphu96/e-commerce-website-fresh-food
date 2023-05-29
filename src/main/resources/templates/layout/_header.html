@@ -1,0 +1,82 @@
+<!-- Header Section Begin -->
+<header class="header">
+	<div class="header__top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="header__top__left">
+						<ul>
+							<li><i class="fa fa-envelope"></i> phuongdinhphu@gmail.com</li>
+							<li>Free Shipping for all Order of $99</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="header__top__right">
+						<div class="header__top__right__social">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-linkedin"></i></a>
+							<a href="#"><i class="fa fa-pinterest-p"></i></a>
+						</div>
+						<div class="header__top__right__language">
+							<img th:src="@{/img/language.png}" alt="">
+							<div>English</div>
+							<span class="arrow_carrot-down"></span>
+							<ul>
+								<li><a href="#">Việt Nam</a></li>
+								<li><a href="#">English</a></li>
+							</ul>
+						</div>
+						<div th:unless="${#request.remoteUser}" class="header__top__right__auth">
+							<a href="/security/login/form"><i class="fa fa-user"></i> Login</a>
+						</div>
+						
+						<th:block th:if="${#request.remoteUser}">
+							
+								<div class="header__top__right__language">
+									Hello <b class="text-info">[[${#request.getAttribute('user').fullname}]]!</b>
+								</div>
+							
+							<div class="header__top__right__auth">
+									
+								<a href="/security/logoff">Logout <i class="fas fa-sign-out-alt"></i></a>
+							</div>
+						</th:block>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3">
+				<div class="header__logo">
+					<a th:href="@{/product/list}"><img th:src="@{/img/logo.png}" alt="Hình"></a>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<nav class="header__menu">
+					<ul>
+						<li class="active"><a th:href="@{/product/list}">Home</a></li>
+						<li><a href="/contact">Contact</a></li>
+						<li><a href="/order/list">Your order</a></li>
+						<li th:if="${#request.isUserInRole('DIRE') or #request.isUserInRole('STAF')}"><a href="/admin">Administration</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="col-lg-3">
+				<div class="header__cart">
+					<ul>
+						<li><a th:href="@{/cart/view}"><i class="fa fa-shopping-bag"></i> <span class="badge">{{cart.getCount}}</span></a></li>
+					</ul>
+					<div class="header__cart__price">Total: <span class="text-danger">${{cart.getAmount}}</span></div>
+				</div>
+			</div>
+		</div>
+		<div class="humberger__open">
+			<i class="fa fa-bars"></i>
+		</div>
+	</div>
+</header>
+<!-- Header Section End -->

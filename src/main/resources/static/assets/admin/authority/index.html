@@ -1,0 +1,23 @@
+<hr>
+
+<h3 class="text-center mt-5 text-info">Authirizing</h3>
+	
+	<div class="container w-50 p-0 shadow bg-body rounded mt-4 mb-4">
+
+        <table class="table table-bordered bg-white table-hover">
+            <thead class="bg-warning text-center text-white">
+                <tr>
+                    <th></th>
+                    <th ng-repeat="role in roles">{{role.name}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="acc in admins">
+                    <th scope="row">{{acc.fullname}}</th>
+                    <td ng-repeat="role in roles">
+                    	<input type="checkbox" ng-checked="authority_of(acc, role)" ng-click="authority_changed(acc, role)">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
